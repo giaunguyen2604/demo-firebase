@@ -23,8 +23,16 @@ Firstly, Install firebase tools `npm install -g firebase-tools`.
 
 Next, go to project source → run `firebase init firestore`.
 
+### Helper commands
+
 // Deploy rules for all databases configured in your firebase.json
 `firebase deploy --only firestore:rules`
 
 // Deploy rules for the specified database configured in your firebase.json
 `firebase deploy --only firestore:<databaseId>`
+
+// select project
+`firebase use <project-id>`
+
+// update local index
+`firebase firestores:indexes > firestores.indexes.json`

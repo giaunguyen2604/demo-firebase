@@ -5,5 +5,9 @@ service cloud.firestore {
     match /todos/{id} {
       allow read, write, delete: if true;
     }
+
+    match /students/{id} {
+      allow read, write: if true;
+    }
   }
 }
