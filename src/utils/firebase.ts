@@ -1,11 +1,10 @@
 // Import the functions you need from the SDKs you need
 import { StudentItem, StudentPayload, TodoItem } from '@/interfaces';
-import { group } from 'console';
 import { getApps, initializeApp } from 'firebase/app';
 import {
 	Query,
 	collection,
-	collectionGroup,
+	connectFirestoreEmulator,
 	deleteDoc,
 	doc,
 	getDocs,
@@ -16,23 +15,32 @@ import {
 } from 'firebase/firestore';
 import { getStorage } from 'firebase/storage';
 
+// const firebaseConfig = {
+// 	apiKey: 'AIzaSyBVAB43yQJ8wydm3FWiYpEzwEvl1cCyER8',
+// 	authDomain: 'fir-learning-38320.firebaseapp.com',
+// 	projectId: 'fir-learning-38320',
+// 	storageBucket: 'fir-learning-38320.appspot.com',
+// 	messagingSenderId: '286709041019',
+// 	appId: '1:286709041019:web:0751fc49e7d2c0761d9fde',
+// 	measurementId: 'G-DW49NBVYS9',
+// };
+
 const firebaseConfig = {
-	apiKey: 'AIzaSyBVAB43yQJ8wydm3FWiYpEzwEvl1cCyER8',
-	authDomain: 'fir-learning-38320.firebaseapp.com',
-	projectId: 'fir-learning-38320',
-	storageBucket: 'fir-learning-38320.appspot.com',
-	messagingSenderId: '286709041019',
-	appId: '1:286709041019:web:0751fc49e7d2c0761d9fde',
-	measurementId: 'G-DW49NBVYS9',
+	// apiKey: 'AIzaSyCBgUZ4FN54oCYItU0sfJ7wKQbN-v1mTpY',
+	// authDomain: 'kanban-ndrive-dev.firebaseapp.com',
+	projectId: 'demo',
+	// storageBucket: 'kanban-ndrive-dev.appspot.com',
+	// messagingSenderId: '507949300781',
+	// appId: '1:507949300781:web:bfee9cca56fa925fc80ca4',
+	// measurementId: 'G-HSJ4MW0HF7',
 };
 
 const app =
 	getApps().length === 0 ? initializeApp(firebaseConfig) : getApps()[0];
 
 const db = getFirestore(app);
-const storage = getStorage(app);
-
-export { db, storage };
+connectFirestoreEmulator(db, '127.0.0.1', 8080);
+export { db };
 
 export const todosCollectionRef = collection(db, 'todos');
 export const studentCollectionRef = collection(db, 'students');

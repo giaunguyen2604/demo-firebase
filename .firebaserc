@@ -1,5 +1,6 @@
 {
   "projects": {
-    "default": "fir-learning-38320"
+    "dev": "demo",
+    "default": "kanban-ndrive-dev"
   }
 }

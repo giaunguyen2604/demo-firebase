@@ -1,19 +1,4 @@
 {
-  "indexes": [
-    {
-      "collectionGroup": "students",
-      "queryScope": "COLLECTION",
-      "fields": [
-        {
-          "fieldPath": "classRoom",
-          "order": "ASCENDING"
-        },
-        {
-          "fieldPath": "math",
-          "order": "ASCENDING"
-        }
-      ]
-    }
-  ],
+  "indexes": [],
   "fieldOverrides": []
 }
