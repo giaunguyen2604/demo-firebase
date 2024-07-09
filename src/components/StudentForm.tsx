@@ -15,11 +15,7 @@ import {
 } from '@chakra-ui/react';
 import React, { useEffect, useState } from 'react';
 import { StudentPayload } from '@/interfaces';
-import {
-	createStudent,
-	getDistinctClassRooms,
-	getListStudent,
-} from '@/utils/firebase';
+import { createStudent, getDistinctClassRooms } from '@/utils/firebase';
 import { useListStudent } from '@/app/store';
 
 const resolver: Resolver<StudentPayload> = async values => {
