@@ -16,23 +16,17 @@ import {
 import { getStorage } from 'firebase/storage';
 
 // const firebaseConfig = {
-// 	apiKey: 'AIzaSyBVAB43yQJ8wydm3FWiYpEzwEvl1cCyER8',
-// 	authDomain: 'fir-learning-38320.firebaseapp.com',
-// 	projectId: 'fir-learning-38320',
-// 	storageBucket: 'fir-learning-38320.appspot.com',
-// 	messagingSenderId: '286709041019',
-// 	appId: '1:286709041019:web:0751fc49e7d2c0761d9fde',
-// 	measurementId: 'G-DW49NBVYS9',
+// 	apiKey: process.env.NEXT_PUBLIC_API_KEY,
+// 	authDomain: process.env.NEXT_PUBLIC_AUTH_DOMAIN,
+// 	projectId: process.env.NEXT_PUBLIC_PROJECT_ID,
+// 	storageBucket: process.env.NEXT_PUBLIC_STORAGE_BUCKET,
+// 	messagingSenderId: process.env.NEXT_PUBLIC_MESSAGING_SENDER_ID,
+// 	appId: process.env.NEXT_PUBLIC_APP_ID,
+// 	measurementId: process.env.NEXT_PUBLIC_MEASUREMENT_ID,
 // };
 
 const firebaseConfig = {
-	// apiKey: 'AIzaSyCBgUZ4FN54oCYItU0sfJ7wKQbN-v1mTpY',
-	// authDomain: 'kanban-ndrive-dev.firebaseapp.com',
 	projectId: 'demo',
-	// storageBucket: 'kanban-ndrive-dev.appspot.com',
-	// messagingSenderId: '507949300781',
-	// appId: '1:507949300781:web:bfee9cca56fa925fc80ca4',
-	// measurementId: 'G-HSJ4MW0HF7',
 };
 
 const app =
