@@ -1,10 +1,10 @@
 // Import the functions you need from the SDKs you need
 import { StudentItem, StudentPayload, TodoItem } from '@/interfaces';
 import { getApps, initializeApp } from 'firebase/app';
+import { getAuth, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 import {
 	Query,
 	collection,
-	connectFirestoreEmulator,
 	deleteDoc,
 	doc,
 	getDocs,
@@ -13,28 +13,25 @@ import {
 	setDoc,
 	where,
 } from 'firebase/firestore';
-import { getStorage } from 'firebase/storage';
 
-// const firebaseConfig = {
-// 	apiKey: process.env.NEXT_PUBLIC_API_KEY,
-// 	authDomain: process.env.NEXT_PUBLIC_AUTH_DOMAIN,
-// 	projectId: process.env.NEXT_PUBLIC_PROJECT_ID,
-// 	storageBucket: process.env.NEXT_PUBLIC_STORAGE_BUCKET,
-// 	messagingSenderId: process.env.NEXT_PUBLIC_MESSAGING_SENDER_ID,
-// 	appId: process.env.NEXT_PUBLIC_APP_ID,
-// 	measurementId: process.env.NEXT_PUBLIC_MEASUREMENT_ID,
-// };
-
-const firebaseConfig = {
-	projectId: 'demo',
-};
+const firebaseConfig = JSON.parse(process.env.NEXT_PUBLIC_FIREBASE_CRED!);
 
 const app =
 	getApps().length === 0 ? initializeApp(firebaseConfig) : getApps()[0];
 
+// Initialize Firebase Auth provider
+const provider = new GoogleAuthProvider();
+
+// whenever a user interacts with the provider, we force them to select an account
+provider.setCustomParameters({
+	prompt: 'select_account',
+});
+
 const db = getFirestore(app);
-connectFirestoreEmulator(db, '127.0.0.1', 8080);
+// connectFirestoreEmulator(db, '127.0.0.1', 8080);
 export { db };
+export const auth = getAuth();
+export const signInWithGooglePopup = () => signInWithPopup(auth, provider);
 
 export const todosCollectionRef = collection(db, 'todos');
 export const studentCollectionRef = collection(db, 'students');
