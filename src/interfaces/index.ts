@@ -2,6 +2,10 @@ export interface TodoItem {
 	id: string;
 	content: string;
 	createdAt: number;
+	createdBy: {
+		uid: string;
+		displayName: string;
+	};
 }
 
 export interface StudentPayload {

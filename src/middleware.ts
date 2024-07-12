@@ -29,8 +29,6 @@ export async function middleware(request: NextRequest) {
 			});
 		},
 		handleInvalidToken: async reason => {
-			console.info('Missing or malformed credentials', { reason });
-
 			return redirectToLogin(request, {
 				path: '/login',
 				publicPaths: PUBLIC_PATHS,

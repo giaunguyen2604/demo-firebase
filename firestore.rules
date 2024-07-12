@@ -2,8 +2,13 @@ rules_version = '2';
 
 service cloud.firestore {
   match /databases/{database}/documents {
-    match /{document=**} {
-      allow read, write: if true;
+    function isLogined() {
+  		return request.auth != null
+    }
+
+    match /todos/{todoId} {
+      allow delete: if isLogined() && request.auth.uid == resource.data.createdBy.uid
+      allow read, create: if isLogined();
     }
   }
 }

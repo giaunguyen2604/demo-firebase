@@ -4,10 +4,12 @@ import { signInWithGooglePopup } from '@/utils/firebase';
 import { Box, Button, useToast } from '@chakra-ui/react';
 import { useRouter } from 'next/navigation';
 import React from 'react';
+import { useAuth } from '../store';
 
 const LoginPage = () => {
 	const toast = useToast();
 	const router = useRouter();
+	const { setUser } = useAuth();
 
 	const handleLogin = async () => {
 		try {
@@ -18,6 +20,7 @@ const LoginPage = () => {
 					Authorization: `Bearer ${idToken}`,
 				},
 			});
+			setUser(credential);
 
 			router.push('/');
 		} catch (error: any) {

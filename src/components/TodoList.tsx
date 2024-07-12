@@ -2,7 +2,7 @@
 
 import { TodoItem } from '@/interfaces';
 import { auth, createTodo, deleteTodo, getListTodo } from '@/utils/firebase';
-import { Box, Button, Input, Stack, useToast } from '@chakra-ui/react';
+import { Box, Button, Input, Stack, Tag, useToast } from '@chakra-ui/react';
 import React, { useEffect, useState } from 'react';
 
 const TodoList = () => {
@@ -87,7 +87,7 @@ const TodoList = () => {
 				</Button>
 			</Stack>
 			<Stack display='flex' alignItems='center' w='100%' mt={2}>
-				{list.map((item, index) => (
+				{list.map(item => (
 					<Stack
 						key={item.id}
 						display='flex'
@@ -107,17 +107,22 @@ const TodoList = () => {
 							alignItems='center'
 						>
 							<p>{item.content}</p>
-							<Button
-								size='xs'
-								w='80px'
-								type='button'
-								colorScheme='red'
-								isDisabled={creating || !!deleteId}
-								isLoading={deleteId === item.id}
-								onClick={() => handleDeleteTodo(item.id)}
-							>
-								Delete
-							</Button>
+							<Stack display='flex' flexDir='row' gap={2}>
+								<Tag borderRadius='full' variant='solid' colorScheme='green'>
+									by {item.createdBy.displayName}
+								</Tag>
+								<Button
+									size='xs'
+									w='80px'
+									type='button'
+									colorScheme='red'
+									isDisabled={creating || !!deleteId}
+									isLoading={deleteId === item.id}
+									onClick={() => handleDeleteTodo(item.id)}
+								>
+									Delete
+								</Button>
+							</Stack>
 						</Stack>
 					</Stack>
 				))}

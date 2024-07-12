@@ -57,6 +57,10 @@ export const createDocId = (): string => {
 };
 
 export const createTodo = async (content: string): Promise<string> => {
+	const user = getAuth().currentUser;
+
+	if (!user) return 'Error: current user not found!';
+
 	const createdAt = new Date().getTime();
 	const id = createDocId();
 
@@ -64,6 +68,10 @@ export const createTodo = async (content: string): Promise<string> => {
 		await setDoc(doc(db, 'todos', id), {
 			content,
 			createdAt,
+			createdBy: {
+				uid: user.uid,
+				displayName: user.displayName,
+			},
 		});
 		return '';
 	} catch (error: any) {
