@@ -1,4 +1,5 @@
 // Import the functions you need from the SDKs you need
+import { clientConfig } from '@/configs';
 import { StudentItem, StudentPayload, TodoItem } from '@/interfaces';
 import { getApps, initializeApp } from 'firebase/app';
 import { getAuth, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
@@ -14,10 +15,7 @@ import {
 	where,
 } from 'firebase/firestore';
 
-const firebaseConfig = JSON.parse(process.env.NEXT_PUBLIC_FIREBASE_CRED!);
-
-const app =
-	getApps().length === 0 ? initializeApp(firebaseConfig) : getApps()[0];
+const app = getApps().length === 0 ? initializeApp(clientConfig) : getApps()[0];
 
 // Initialize Firebase Auth provider
 const provider = new GoogleAuthProvider();

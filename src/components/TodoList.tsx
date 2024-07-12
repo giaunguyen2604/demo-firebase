@@ -6,7 +6,6 @@ import { Box, Button, Input, Stack, useToast } from '@chakra-ui/react';
 import React, { useEffect, useState } from 'react';
 
 const TodoList = () => {
-	const [loadingLogout, setLoadingOut] = useState<boolean>(false);
 	const toast = useToast();
 	const [creating, setCreating] = useState<boolean>(false);
 	const [deleteId, setDeleteId] = useState<string>();
@@ -60,23 +59,8 @@ const TodoList = () => {
 		setDeleteId(undefined);
 	};
 
-	const handleLogout = async () => {
-		setLoadingOut(true);
-		await auth.signOut();
-		setLoadingOut(false);
-	};
-
 	return (
 		<Box>
-			<Button
-				position='fixed'
-				top={5}
-				right={3}
-				onClick={handleLogout}
-				isLoading={loadingLogout}
-			>
-				Logout
-			</Button>
 			<Stack
 				display='flex'
 				flexDir='row'

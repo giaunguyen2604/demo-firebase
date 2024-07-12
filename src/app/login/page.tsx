@@ -2,14 +2,24 @@
 
 import { signInWithGooglePopup } from '@/utils/firebase';
 import { Box, Button, useToast } from '@chakra-ui/react';
+import { useRouter } from 'next/navigation';
 import React from 'react';
 
 const LoginPage = () => {
 	const toast = useToast();
+	const router = useRouter();
 
 	const handleLogin = async () => {
 		try {
-			await signInWithGooglePopup();
+			const credential = await signInWithGooglePopup();
+			const idToken = await credential.user.getIdToken();
+			await fetch('/api/login', {
+				headers: {
+					Authorization: `Bearer ${idToken}`,
+				},
+			});
+
+			router.push('/');
 		} catch (error: any) {
 			toast({
 				title: error.message,
