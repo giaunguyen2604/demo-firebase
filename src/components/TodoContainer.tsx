@@ -34,7 +34,7 @@ const TodoContainer = () => {
 			</Button>
 			<TodoList />
 			<Box position={'fixed'} left={2} bottom={2}>
-				{user?.user.displayName}
+				{user?.displayName}
 			</Box>
 		</>
 	);

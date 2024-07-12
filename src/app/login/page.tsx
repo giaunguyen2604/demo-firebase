@@ -20,7 +20,7 @@ const LoginPage = () => {
 					Authorization: `Bearer ${idToken}`,
 				},
 			});
-			setUser(credential);
+			setUser(credential.user);
 
 			router.push('/');
 		} catch (error: any) {

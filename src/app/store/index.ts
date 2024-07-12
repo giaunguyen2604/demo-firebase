@@ -1,6 +1,6 @@
 import { StudentItem } from '@/interfaces';
 import { getListStudent, studentCollectionRef } from '@/utils/firebase';
-import { UserCredential } from 'firebase/auth';
+import { User, UserCredential } from 'firebase/auth';
 import { QueryConstraint, query, where } from 'firebase/firestore';
 import { create } from 'zustand';
 
@@ -38,11 +38,11 @@ export const useListStudent = create<listStudentState>(set => ({
 }));
 
 interface AuthState {
-	user: UserCredential | null;
-	setUser: (user: UserCredential | null) => void;
+	user: User | null;
+	setUser: (user: User | null) => void;
 }
 
 export const useAuth = create<AuthState>(set => ({
 	user: null,
-	setUser: (user: UserCredential | null) => set(() => ({ user })),
+	setUser: (user: User | null) => set(() => ({ user })),
 }));
